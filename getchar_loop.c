@@ -3,6 +3,5 @@ void main(void){
     char x;
     while ((x = getchar())!=EOF){
         putchar(x);
-        printf("\n");
     }
 }
