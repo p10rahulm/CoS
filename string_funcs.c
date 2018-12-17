@@ -59,6 +59,17 @@ int ascii_to_int(char s[]){
     if(start_i==1)n*=-1;
     return n;
 }
+char* remove_char_from_string(char s[],char c){
+    int i=0,j=0;
+    while(s[i]!='\0'){
+        if(s[i]!=c){
+            s[j++]=s[i];
+        }
+        i++;
+    }
+    s[j]='\0';
+    return s;
+}
 
 void main(void){
     char a[] = "abce";
@@ -84,4 +95,6 @@ void main(void){
     // you can't simply assign to existing arrays
     stringcpy("-123",f);
     printf("the number -123 converted to int is %d\n",ascii_to_int(f));
+    char g[10] = "abcbdb";
+    printf("abcbdb without 'b' is %s\n",remove_char_from_string(g,'b'));
 }
