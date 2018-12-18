@@ -136,6 +136,23 @@ struct node* delete_node_by_value(struct node* head, int deletenode_value){
         }
     }
 }
+struct node* iterative_reverse(struct node *head){
+    struct node *prev=NULL,*curr=head,*curr_next=head->link;
+    while(curr){
+        curr_next = curr->link;
+        curr->link = prev;
+        prev =curr;
+        curr =curr_next;
+    }
+    head = prev;
+    return head;
+}
+struct node* recursive_reverse(struct node* prev,struct node *curr){
+    struct node *curr_next=curr->link;
+    curr->link = prev;
+    if(!curr_next)return(curr);
+    return(recursive_reverse(curr,curr_next));
+}
 
 void main(void){
     int a[] = {10,20,30,40};
@@ -172,4 +189,10 @@ void main(void){
     traverse_print_recursive(head);
     printf("\n");
     traverse_print_reverse(head);
+    printf("\n");
+    head = iterative_reverse(head);
+    traverse_print_recursive(head);
+    printf("\n");
+    head = recursive_reverse('\0',head);
+    traverse_print_recursive(head);
 }
