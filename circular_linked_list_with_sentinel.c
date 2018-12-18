@@ -96,7 +96,6 @@ struct node* delete_node(struct node* head, struct node* node_to_delete){
             head->link =NULL;
             return head;
     }
-    // we will implement fast delete where the next pointer from node to delete will be deleted.
     int numnodes = head->value;
     struct node* traveller = head;
     for(int i =0;i<numnodes;i++){
@@ -105,6 +104,21 @@ struct node* delete_node(struct node* head, struct node* node_to_delete){
     }
     traveller->link=node_to_delete->link;
     free(node_to_delete);
+    head->value--;
+}
+struct node* delete_intermediate_node(struct node* head, struct node* node_to_delete){
+    if(head->value ==0){return NULL;}
+    if(head->value ==1){
+            free (head->link);
+            head->value =0;
+            head->link =NULL;
+            return head;
+    }
+    // we will implement fast delete where the next pointer from node to delete will be deleted.
+    node_to_delete->value = node_to_delete->link->value;
+    struct node* temp = node_to_delete->link;
+    node_to_delete->link = temp->link;
+    free(temp);
     head->value--;
 }
 struct node* delete_node_by_value(struct node* head, int deletenode_value){
